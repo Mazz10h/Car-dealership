@@ -3,11 +3,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".navbar a");
 
   // Navigation
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const target = link.getAttribute("data-section");
-      pages.forEach(p => p.classList.remove("active"));
+      pages.forEach((p) => p.classList.remove("active"));
       document.getElementById(target).classList.add("active");
     });
   });
@@ -17,22 +17,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let cars = [];
 
   fetch("http://localhost:3000/cars") // json-server endpoint
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       cars = data;
       renderCars(cars);
     });
 
   function renderCars(carArray) {
     carList.innerHTML = "";
-    carArray.forEach(car => {
+    carArray.forEach((car) => {
       const card = document.createElement("div");
       card.className = "car-card";
       card.innerHTML = `
         <img src="${car.image}" alt="${car.model}" />
         <h3>${car.brand} ${car.model}</h3>
         <p>Year: ${car.year}</p>
-        <p>Price: ksh${car.price}</p>
+        <p>Price: $${car.price}</p>
         <p>Fuel: ${car.fuel}</p>
       `;
       carList.appendChild(card);
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const brand = brandFilter.value;
     const fuel = fuelFilter.value;
 
-    const filtered = cars.filter(car => {
+    const filtered = cars.filter((car) => {
       const brandMatch = brand === "all" || car.brand === brand;
       const fuelMatch = fuel === "all" || car.fuel === fuel;
       return brandMatch && fuelMatch;
@@ -67,4 +67,3 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.reset();
   });
 });
-
