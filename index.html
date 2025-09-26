@@ -40,6 +40,8 @@
             <option value="BMW">BMW</option>
             <option value="Audi">Audi</option>
             <option value="Mercedes">Mercedes</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Volkswagen">Volkswagen</option>
           </select>
 
           <label>Fuel Type:</label>
@@ -70,31 +72,50 @@
 
       <section id="reviews" class="page">
         <h2>Customer Reviews</h2>
-        <p>"I finally got my BMW M5 series. Top-notch car!" -Gabriel M.</p>
-        <p>
-          "Highly recommend German Machines from this dealership. Just got my
-          Mercedes from there and I totally love it." -Michelle N
-        </p>
-        <p>
-          "This is my second time buying from Precisionkraft. Their attention to
-          detail and honesty keeps me coming back." — Sarah D.
-        </p>
+        <div id="reviews-list">
+          <p>"I finally got my BMW M5 series. Top-notch car!" -Gabriel M.</p>
+          <p>
+            "Highly recommend German Machines from this dealership. Just got my
+            Mercedes from there and I totally love it." -Michelle N
+          </p>
+          <p>
+            "This is my second time buying from Precisionkraft. Their attention
+            to detail and honesty keeps me coming back." — Sarah D.
+          </p>
 
-        <p>
-          "I had a minor issue with the paperwork, but the staff handled it
-          professionally and quickly. Still walked away with my dream Audi A6."
-          — Zainab K.
-        </p>
+          <p>
+            "I had a minor issue with the paperwork, but the staff handled it
+            professionally and quickly. Still walked away with my dream Audi
+            A6." — Zainab K.
+          </p>
+        </div>
+
+        <!--Review Form-->
+        <h3>Leave a Review</h3>
+        <form id="review-form">
+          <input
+            type="text"
+            id="reviewer-name"
+            placeholder="Your Name"
+            required
+          />
+          <textarea
+            id="review-text"
+            placeholder="Write your review here"
+            required
+          ></textarea>
+          <button type="submit">Submit Review</button>
+        </form>
       </section>
-
       <section id="contact" class="page">
         <h2>Contact Us</h2>
-        <form id="contact-form">
-          <input type="text" placeholder="Name" required />
-          <input type="email" placeholder="Email" required />
-          <textarea placeholder="Message"></textarea>
-          <button type="submit">Send</button>
-        </form>
+
+        <div class="contact-info">
+          <p><strong>Phone:</strong> +254 799 965 280</p>
+          <p><strong>Email:</strong> info@precisionkraft.com</p>
+          <p><strong>TagLine:</strong>“Deutsche Präzision, weltweite Klasse” <br/>(German precision, worldwide class)</p>
+
+        </div>
       </section>
     </main>
 

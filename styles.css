@@ -51,3 +51,68 @@ body {
   object-fit: cover;
 }
 
+
+#review-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+}
+
+#review-form input,
+#review-form textarea {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#review-form button {
+  background-color: teal;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#review-form button:hover {
+  background-color: darkcyan;
+}
+
+#review-form{
+  margin-top: 10px;
+  display: flex;
+  flex-direction:column;
+  max-width: 400px;
+}
+
+#reviews h3{
+  margin-top: 50px;
+}
+
+body{
+  margin: 0;
+  background-image: url(https://luxurysupercarsdubai.com/wp-content/uploads/2024/12/Mercedes-Benz-G63-AMG-2021-white-3.jpeg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+section{
+  background: rgba(255, 255, 255, 0.8);
+  padding: 40px;
+  margin: 20px auto;
+  border-radius: 8px;
+  max-width: 1000px;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+#reviews {
+  background-image: url();
+}

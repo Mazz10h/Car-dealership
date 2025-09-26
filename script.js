@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const pages = document.querySelectorAll(".page");
   const navLinks = document.querySelectorAll(".navbar a");
 
-  // Navigation
+  // Navigation between sections
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -12,11 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Fetch and render cars
+  // VEHICLES SECTION FUNCTIONALITY
+
   const carList = document.getElementById("car-list");
   let cars = [];
 
-  fetch("http://localhost:3000/cars") // json-server endpoint
+  fetch("http://localhost:3000/cars")
     .then((res) => res.json())
     .then((data) => {
       cars = data;
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Filtering
+  // Vehicle Filters
   const brandFilter = document.getElementById("brand-filter");
   const fuelFilter = document.getElementById("fuel-filter");
 
@@ -48,8 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fuel = fuelFilter.value;
 
     const filtered = cars.filter((car) => {
-      const brandMatch = brand === "all" || car.brand === brand;
-      const fuelMatch = fuel === "all" || car.fuel === fuel;
+      const brandMatch = !brand || car.brand === brand;
+      const fuelMatch = !fuel || car.fuel === fuel;
       return brandMatch && fuelMatch;
     });
 
@@ -58,12 +59,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
   brandFilter.addEventListener("change", applyFilters);
   fuelFilter.addEventListener("change", applyFilters);
+  
+  // CONTACT FORM
 
-  // Contact form submit
   const contactForm = document.getElementById("contact-form");
   contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
     alert("Message sent! (Thank you:))");
     contactForm.reset();
+  });
+
+//review form functionality
+  const reviewForm = document.getElementById("review-form");
+  const reviewsList = document.getElementById("reviews-list");
+
+  // Load saved reviews on page load
+  fetch("http://localhost:3000/reviews")
+    .then((res) => res.json())
+    .then((reviews) => {
+      reviews.forEach((review) => {
+        const reviewElement = document.createElement("p");
+        reviewElement.textContent = `"${review.text}" — ${review.name}`;
+        reviewsList.appendChild(reviewElement);
+      });
+    });
+
+  // Submit new review
+  reviewForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("reviewer-name").value.trim();
+    const review = document.getElementById("review-text").value.trim();
+
+    if (name && review) {
+      const newReview = {
+        name,
+        text: review,
+      };
+
+      fetch("http://localhost:3000/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newReview),
+      })
+        .then((res) => res.json())
+        .then((savedReview) => {
+          const reviewElement = document.createElement("p");
+          reviewElement.textContent = `"${savedReview.text}" — ${savedReview.name}`;
+          reviewsList.appendChild(reviewElement);
+          reviewForm.reset();
+        })
+        .catch((error) => {
+          console.error("Error saving review:", error);
+          alert("Something went wrong while saving your review.");
+        });
+    }
   });
 });
